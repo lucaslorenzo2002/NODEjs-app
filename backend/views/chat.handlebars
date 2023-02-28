@@ -1,0 +1,23 @@
+<h1>chat</h1>
+
+<style>
+        form{background-color: rgba(0, 0, 0, 0,15); position: fixed; padding: 0.25rem; bottom: 0; left: 0; right: 0; display: flex; height: 3rem; box-sizing: border-box; backdrop-filter: blur(10);}
+        ul{list-style-type: none; margin: 0; padding: 0;}
+        ul > li {padding: 0.5rem 1rem;}
+        ul > li:nth-child(odd){
+                background: #dcf8c6;
+                text-align: right;
+                font-style: italic;
+                font-weight: 600;
+        }
+</style>
+
+<ul id="output">
+        
+</ul>
+
+<form id="chat">
+        <input type="text" name="username" id="user" placeholder="username">
+        <input type="text" name="message" id="message" placeholder="write a message...">
+        <input type="submit" value="enviar">
+</form> 
