@@ -24,6 +24,15 @@ class UserCrud{
         }
     }
 
+    async readUserByMail(email){
+        try{
+            const data = await User.findOne({email});
+            return data
+        }catch(err){
+            console.log(err);
+        }
+    }
+
     async readUserById(id){
         try{
             const data = await User.findById(id);
