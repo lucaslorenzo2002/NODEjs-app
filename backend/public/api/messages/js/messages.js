@@ -1,6 +1,6 @@
 window.addEventListener('load', () => {
-    const socket = io();
-dayjs.extend(window.dayjs_plugin_relativeTime)
+const socket = io();
+dayjs.extend(window.dayjs_plugin_localizedFormat)
 
 
 //SCHEMAS
@@ -12,28 +12,36 @@ const Chat = new normalizr.schema.Entity('chat', {messages: [messageSchema]}, {i
 //DOM
 const chat = document.querySelector('#chat');
 const message = document.querySelector('#message');
-const user = document.querySelector('#user');
 const output = document.querySelector('#output');
 
-//TIME AGO
-let date = new Date();
+
+//FETCH A MONGODB
+fetch("/api/users/data-json")
+.then(response => response.json())
+.then(data => {
+
+    const email = data.user.email;
+    const name = data.user.name;
+    const lastName = data.user.lastname;
+    const username = data.user.username;
 
 chat.addEventListener('submit', (e) => {
     e.preventDefault()
         let msg = {
         author: {
-            email: 'luqas02@gmail.com',
-            name: 'lucas',
-            lastName: 'lorenzo',
-            username: user.value
+            email,
+            name,
+            lastName,
+            username
         },
         message: message.value,
-        fyh: dayjs(date).fromNow(),
+        fyh: dayjs().format('LLL'),
         id: 1
     } 
+    console.log(msg);
     socket.emit('message', msg)
 })
-
+})
 socket.on('new message', (data) => {
     const objDenormalizado = normalizr.denormalize(data.result, Chat, data.entities)
     

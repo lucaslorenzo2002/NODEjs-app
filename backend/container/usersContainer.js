@@ -35,19 +35,19 @@ class UserCrud{
 
     async readUserById(id){
         try{
-            const data = await User.findById(id);
+            const data = await User.findById(id).lean();
             return data
         }catch(err){
             console.log(err);
         }
     }
 
-    async deleteUser(id){
-        try{
-            const user = await User.deleteOne({id: id})
-            return user
-        }catch(err){
-            throw new Error + err
+    async updateUser(id, username, email, address, phone){
+        try {
+            const data = await User.updateOne({_id: id}, {username, email, address, phone});
+            return data
+        } catch (error) {
+            console.log(error);
         }
     } 
 }

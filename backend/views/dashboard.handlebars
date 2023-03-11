@@ -1,3 +1,14 @@
-<h1>esto es el dashboard</h1>
+
 <button onclick="location.href='/api/messages/chat'" >go to chat</button>
 <button onclick="location.href='/api/users/logout'">logout</button>
+
+
+<h1>My user</h1>
+<ul>
+    <li>Name: {{user.username}}</li>
+    <li>Email: {{user.email}}</li>
+    <li>Address: {{user.address}}</li>
+    <li>Phone: {{user.phone}}</li>
+</ul>
+
+<button onclick="location.href='/api/users/updateprofile'">Update profile</button>

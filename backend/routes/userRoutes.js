@@ -1,20 +1,20 @@
-const { getData, updateData, getLogout, deleteUser } = require('../controllers/userControllers');
+const { getData, getLogout, getUpdateData, postUpdateData, getHome } = require('../controllers/userControllers');
 const userRouter = require('./router');
 const auth = require('../middlewares/auth');
 
 
-//VER DATOS
-userRouter.get('/home', auth, getData)
+//DATA
+userRouter.get('/home', auth, getHome)
+userRouter.get('/data-json', auth, getData)
 
 //UPDATE
-userRouter.put('/updateprofile', auth, updateData)
+userRouter.get('/updateprofile', auth, getUpdateData)
+userRouter.post('/updateprofile', auth, postUpdateData)
 
 //ROOT
-userRouter.get('/', auth, getData)
+userRouter.get('/', auth, getHome)
 
 //LOGOUT
 userRouter.get('/logout', getLogout)
-
-userRouter.delete('/:id', deleteUser)
 
 module.exports = userRouter
